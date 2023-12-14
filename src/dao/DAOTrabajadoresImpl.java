@@ -128,7 +128,26 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
 
     @Override
     public void delete(Trabajador trabajador) {
+	//pedir la conexión
+		Connection conexion = new DBConnection().getConexion();
 
+		try {
+			String sql = "DELETE FROM persona WHERE dni = ?";
+			//Uso una plataforma "Preparada"
+			PreparedStatement plataforma = conexion.prepareStatement(sql);
+			//rellenar las interrogaciones
+			plataforma.setString(1, trabajador.getDni());
+			plataforma.executeUpdate();
+
+			//cerrar la conexión
+			conexion.close();
+
+		} catch (SQLException e) {
+			System.out.println("Error borrando Persona");
+			e.printStackTrace();
+		}
+
+	}
     }
 
-}
+
