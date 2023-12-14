@@ -11,10 +11,10 @@ import java.util.ArrayList;
  *
  * @author Administrador
  */
-public interface DAOInterface {
+public interface DAOTrabajador {
     public Trabajador get(String id);
     public ArrayList<Trabajador> getAll();
-    public void insert(Object objeto);
-    public void update(Object objeto);
-    public void delete(Object object);
+    public void insert(Trabajador trabajador);
+    public void update(Trabajador trabajador);
+    public void delete(Trabajador trabajador);
 }
