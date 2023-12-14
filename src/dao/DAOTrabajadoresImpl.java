@@ -27,7 +27,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
         Trabajador trabajador = null;
         Connection conn = new DBConnection().getConexion();
 
-        String consulta = "SELECT * FROM trabajadores WHERE id = ?";
+        String consulta = "SELECT * FROM trabajadores WHERE dni = ?";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(consulta);
             preparedStatement.setString(1, id);
@@ -85,9 +85,9 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
     @Override
     public void insert(Trabajador trabajador) {
         Connection conn = new DBConnection().getConexion();
-        
+
         String consulta = "INSERT INTO trabajadores VALUES (?,?,?,?,?,?)";
-        
+
         PreparedStatement preparedStatement;
         try {
             preparedStatement = conn.prepareStatement(consulta);
@@ -109,45 +109,43 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
     public void update(Trabajador trabajador) {
         Connection conn = new DBConnection().getConexion();
         String consulta = "UPDATE trabajadores SET Nombre = ?, Apellidos = ?, Sueldo = ?, Fecha = ?, Matricula = ? WHERE DNI = ?";
-        
-         try {
+
+        try {
             PreparedStatement preparedStatement = conn.prepareStatement(consulta);
             preparedStatement.setString(6, trabajador.getDni());
             preparedStatement.setString(1, trabajador.getNombre());
             preparedStatement.setString(2, trabajador.getApellidos());
             preparedStatement.setDouble(3, trabajador.getSueldo());
-            preparedStatement.setDate(4 , (Date) trabajador.getFecha());
+            preparedStatement.setDate(4, (Date) trabajador.getFecha());
             preparedStatement.setString(5, trabajador.getMatricula());
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException ex) {
-             System.out.println("Error al modificar las propiedades a un trabajador");
+            System.out.println("Error al modificar las propiedades a un trabajador");
             Logger.getLogger(DAOTrabajadoresImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
 
     @Override
     public void delete(Trabajador trabajador) {
-	//pedir la conexión
-		Connection conexion = new DBConnection().getConexion();
+        //pedir la conexión
+        Connection conexion = new DBConnection().getConexion();
 
-		try {
-			String sql = "DELETE FROM trabajadores WHERE dni = ?";
-			//Uso una plataforma "Preparada"
-			PreparedStatement plataforma = conexion.prepareStatement(sql);
-			//rellenar las interrogaciones
-			plataforma.setString(1, trabajador.getDni());
-			plataforma.executeUpdate();
+        try {
+            String sql = "DELETE FROM trabajadores WHERE dni = ?";
+            //Uso una plataforma "Preparada"
+            PreparedStatement plataforma = conexion.prepareStatement(sql);
+            //rellenar las interrogaciones
+            plataforma.setString(1, trabajador.getDni());
+            plataforma.executeUpdate();
 
-			//cerrar la conexión
-			conexion.close();
+            //cerrar la conexión
+            conexion.close();
 
-		} catch (SQLException e) {
-			System.out.println("Error borrando trabajador");
-			e.printStackTrace();
-		}
+        } catch (SQLException e) {
+            System.out.println("Error borrando trabajador");
+            e.printStackTrace();
+        }
 
-	}
     }
-
-
+}

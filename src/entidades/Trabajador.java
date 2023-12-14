@@ -74,6 +74,13 @@ public class Trabajador {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+
+    @Override
+    public String toString() {
+        return "Trabajador{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", sueldo=" + sueldo + ", fecha=" + fecha + ", matricula=" + matricula + '}';
+    }
+    
+    
     
     
 }
