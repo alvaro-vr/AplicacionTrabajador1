@@ -8,6 +8,7 @@ import connection.DBConnection;
 import entidades.Trabajador;
 import java.util.ArrayList;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -44,6 +45,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
             }
 
         } catch (SQLException ex) {
+            System.out.println("Error al devolver el trabajador: ");
             Logger.getLogger(DAOTrabajadoresImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -82,12 +84,46 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
 
     @Override
     public void insert(Trabajador trabajador) {
+        Connection conn = new DBConnection().getConexion();
+        
+        String consulta = "INSERT INTO trabajadores VALUES (?,?,?,?,?,?)";
+        
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = conn.prepareStatement(consulta);
+            preparedStatement.setString(1, trabajador.getDni());
+            preparedStatement.setString(2, trabajador.getNombre());
+            preparedStatement.setString(3, trabajador.getApellidos());
+            preparedStatement.setDouble(4, trabajador.getSueldo());
+            preparedStatement.setDate(5, (Date) trabajador.getFecha());
+            preparedStatement.setString(6, trabajador.getMatricula());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar el trabajador: ");
+            Logger.getLogger(DAOTrabajadoresImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
     @Override
     public void update(Trabajador trabajador) {
-
+        Connection conn = new DBConnection().getConexion();
+        String consulta = "UPDATE trabajadores SET Nombre = ?, Apellidos = ?, Sueldo = ?, Fecha = ?, Matricula = ? WHERE DNI = ?";
+        
+         try {
+            PreparedStatement preparedStatement = conn.prepareStatement(consulta);
+            preparedStatement.setString(6, trabajador.getDni());
+            preparedStatement.setString(1, trabajador.getNombre());
+            preparedStatement.setString(2, trabajador.getApellidos());
+            preparedStatement.setDouble(3, trabajador.getSueldo());
+            preparedStatement.setDate(4 , (Date) trabajador.getFecha());
+            preparedStatement.setString(5, trabajador.getMatricula());
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException ex) {
+             System.out.println("Error al modificar las propiedades a un trabajador");
+            Logger.getLogger(DAOTrabajadoresImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @Override
