@@ -132,7 +132,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
 		Connection conexion = new DBConnection().getConexion();
 
 		try {
-			String sql = "DELETE FROM persona WHERE dni = ?";
+			String sql = "DELETE FROM trabajadores WHERE dni = ?";
 			//Uso una plataforma "Preparada"
 			PreparedStatement plataforma = conexion.prepareStatement(sql);
 			//rellenar las interrogaciones
@@ -143,7 +143,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
 			conexion.close();
 
 		} catch (SQLException e) {
-			System.out.println("Error borrando Persona");
+			System.out.println("Error borrando trabajador");
 			e.printStackTrace();
 		}
 
