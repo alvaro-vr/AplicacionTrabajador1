@@ -8,12 +8,12 @@ package vistas;
  *
  * @author Alumno
  */
-public class dialogNuevoTrabajador extends javax.swing.JDialog {
+public class dialogFiltrarTrabajador extends javax.swing.JDialog {
 
     /**
-     * Creates new form dialogNuevoTrabajador
+     * Creates new form dialogModTrabajador
      */
-    public dialogNuevoTrabajador(java.awt.Frame parent, boolean modal) {
+    public dialogFiltrarTrabajador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -27,27 +27,27 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNuevoDia = new javax.swing.JTextField();
-        btnNuevoCancelar = new javax.swing.JButton();
-        txtNuevoAnio = new javax.swing.JTextField();
+        txtFiltrarDia = new javax.swing.JTextField();
+        btnFiltrarCancelar = new javax.swing.JButton();
+        txtFiltrarAnio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNuevoDni = new javax.swing.JTextField();
+        txtFiltrarDni = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtNuevoNombre = new javax.swing.JTextField();
+        txtFiltrarNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtNuevoApellidos = new javax.swing.JTextField();
-        txtNuevoSueldo = new javax.swing.JTextField();
+        txtFiltrarApellidos = new javax.swing.JTextField();
+        txtFiltrarSueldo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtNuevoMes = new javax.swing.JTextField();
-        txtNuevoMatricula = new javax.swing.JTextField();
-        btnNuevoAceptar = new javax.swing.JButton();
+        txtFiltrarMes = new javax.swing.JTextField();
+        txtFiltrarMatricula = new javax.swing.JTextField();
+        btnFiltrarAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Añadir Nuevo Trabajador");
+        setTitle("Modificar Trabajador");
 
-        btnNuevoCancelar.setText("Cancelar");
+        btnFiltrarCancelar.setText("Cancelar");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
@@ -64,7 +64,7 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
 
         jLabel7.setText("Matricula:");
 
-        btnNuevoAceptar.setText("Aceptar");
+        btnFiltrarAceptar.setText("Aceptar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,10 +81,10 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
                             .addComponent(jLabel5))
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNuevoApellidos)
-                            .addComponent(txtNuevoNombre)
-                            .addComponent(txtNuevoDni)
-                            .addComponent(txtNuevoSueldo, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(txtFiltrarApellidos)
+                            .addComponent(txtFiltrarNombre)
+                            .addComponent(txtFiltrarDni)
+                            .addComponent(txtFiltrarSueldo, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -92,20 +92,20 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addComponent(txtNuevoDia, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFiltrarDia, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
-                                .addComponent(txtNuevoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFiltrarMes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)
-                                .addComponent(txtNuevoAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFiltrarAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnNuevoAceptar)
+                                        .addComponent(btnFiltrarAceptar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                                        .addComponent(btnNuevoCancelar))
-                                    .addComponent(txtNuevoMatricula))))))
+                                        .addComponent(btnFiltrarCancelar))
+                                    .addComponent(txtFiltrarMatricula))))))
                 .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
@@ -113,34 +113,34 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNuevoDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltrarDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltrarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtNuevoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltrarApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtNuevoSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltrarSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNuevoDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNuevoMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNuevoAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltrarDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltrarMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltrarAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtNuevoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltrarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevoCancelar)
-                    .addComponent(btnNuevoAceptar))
+                    .addComponent(btnFiltrarCancelar)
+                    .addComponent(btnFiltrarAceptar))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -164,20 +164,20 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(dialogNuevoTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(dialogNuevoTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(dialogNuevoTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(dialogNuevoTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                dialogNuevoTrabajador dialog = new dialogNuevoTrabajador(new javax.swing.JFrame(), true);
+                dialogModTrabajador dialog = new dialogModTrabajador(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -190,21 +190,21 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNuevoAceptar;
-    private javax.swing.JButton btnNuevoCancelar;
+    private javax.swing.JButton btnFiltrarAceptar;
+    private javax.swing.JButton btnFiltrarCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtNuevoAnio;
-    private javax.swing.JTextField txtNuevoApellidos;
-    private javax.swing.JTextField txtNuevoDia;
-    private javax.swing.JTextField txtNuevoDni;
-    private javax.swing.JTextField txtNuevoMatricula;
-    private javax.swing.JTextField txtNuevoMes;
-    private javax.swing.JTextField txtNuevoNombre;
-    private javax.swing.JTextField txtNuevoSueldo;
+    private javax.swing.JTextField txtFiltrarAnio;
+    private javax.swing.JTextField txtFiltrarApellidos;
+    private javax.swing.JTextField txtFiltrarDia;
+    private javax.swing.JTextField txtFiltrarDni;
+    private javax.swing.JTextField txtFiltrarMatricula;
+    private javax.swing.JTextField txtFiltrarMes;
+    private javax.swing.JTextField txtFiltrarNombre;
+    private javax.swing.JTextField txtFiltrarSueldo;
     // End of variables declaration//GEN-END:variables
 }
