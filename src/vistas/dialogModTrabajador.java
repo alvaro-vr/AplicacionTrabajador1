@@ -60,6 +60,8 @@ public class dialogModTrabajador extends javax.swing.JDialog {
 
         jLabel3.setText("Fecha:");
 
+        txtModDni.setEditable(false);
+
         jLabel4.setText("Apellidos:");
 
         jLabel5.setText("Sueldo:");

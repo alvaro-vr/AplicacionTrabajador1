@@ -96,6 +96,7 @@ public class VistaInicial extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tabla Trabajadores");
 
         tableTrabajadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

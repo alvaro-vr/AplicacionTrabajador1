@@ -6,6 +6,8 @@ package vistas;
 
 import dao.DAOTrabajador;
 import dao.DAOTrabajadoresImpl;
+import entidades.Trabajador;
+import java.util.Date;
 
 /**
  *
@@ -160,7 +162,6 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
 
     private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoAceptarActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_btnNuevoAceptarActionPerformed
 
     /**
