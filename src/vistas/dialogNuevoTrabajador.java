@@ -7,7 +7,9 @@ package vistas;
 import dao.DAOTrabajador;
 import dao.DAOTrabajadoresImpl;
 import entidades.Trabajador;
+import java.time.LocalDate;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,6 +58,13 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
         setTitle("Añadir Nuevo Trabajador");
 
         btnNuevoCancelar.setText("Cancelar");
+        btnNuevoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoCancelarActionPerformed(evt);
+            }
+        });
+
+        txtNuevoAnio.setPreferredSize(new java.awt.Dimension(100, 26));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
@@ -162,7 +171,51 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
 
     private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoAceptarActionPerformed
         // TODO add your handling code here:
+        String dni = txtNuevoDni.getText();
+        String nombre = txtNuevoNombre.getText();
+        String apellidos = txtNuevoApellidos.getText();
+        String sueldoStr = txtNuevoSueldo.getText();
+        String diaStr = txtNuevoDia.getText();
+        String mesStr = txtNuevoMes.getText();
+        String anioStr = txtNuevoAnio.getText();
+        String matricula = txtNuevoMatricula.getText();
+        
+        try {
+            // comprobar sueldo
+            double sueldo = Double.parseDouble(sueldoStr);
+
+            // comprobar fecha
+            int dia = Integer.parseInt(diaStr);
+            int mes = Integer.parseInt(mesStr);
+            int anio = Integer.parseInt(anioStr);
+
+            // comprobar formato fecha
+            if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+                throw new NumberFormatException();
+            }
+
+            // concatena la fecha
+            LocalDate fecha = LocalDate.of(anio, mes, dia);
+
+            // objeto trabajador
+            Trabajador trabajador = new Trabajador(dni, nombre, apellidos, sueldo, fecha, matricula);
+
+            // insertar el trabajador
+            DAOTrabajador daoTrabajador = new DAOTrabajadoresImpl();
+            daoTrabajador.insert(trabajador);
+
+            // cerrar
+            this.dispose();
+        } catch (NumberFormatException e) {
+            // popup datos incorrectos
+            JOptionPane.showMessageDialog(this, "Datos incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnNuevoAceptarActionPerformed
+
+    private void btnNuevoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnNuevoCancelarActionPerformed
 
     /**
      * @param args the command line arguments
