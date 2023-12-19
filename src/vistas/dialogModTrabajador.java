@@ -49,6 +49,8 @@ public class dialogModTrabajador extends javax.swing.JDialog {
 
         btnModCancelar.setText("Cancelar");
 
+        txtModAnio.setPreferredSize(new java.awt.Dimension(100, 26));
+
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
