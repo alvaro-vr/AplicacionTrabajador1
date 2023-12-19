@@ -4,6 +4,9 @@
  */
 package vistas;
 
+import dao.DAOTrabajador;
+import dao.DAOTrabajadoresImpl;
+
 /**
  *
  * @author Alumno
@@ -13,6 +16,9 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
     /**
      * Creates new form dialogNuevoTrabajador
      */
+    
+    public DAOTrabajador dao = new DAOTrabajadoresImpl();
+    
     public dialogNuevoTrabajador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -65,6 +71,11 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
         jLabel7.setText("Matricula:");
 
         btnNuevoAceptar.setText("Aceptar");
+        btnNuevoAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,6 +157,11 @@ public class dialogNuevoTrabajador extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNuevoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoAceptarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnNuevoAceptarActionPerformed
 
     /**
      * @param args the command line arguments

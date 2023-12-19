@@ -4,6 +4,14 @@
  */
 package vistas;
 
+import dao.DAOTrabajador;
+import dao.DAOTrabajadoresImpl;
+import entidades.Trabajador;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alumno
@@ -49,6 +57,8 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
 
         btnFiltrarCancelar.setText("Cancelar");
 
+        txtFiltrarAnio.setPreferredSize(new java.awt.Dimension(100, 26));
+
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -65,6 +75,11 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
         jLabel7.setText("Matricula:");
 
         btnFiltrarAceptar.setText("Aceptar");
+        btnFiltrarAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,6 +161,49 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnFiltrarAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarAceptarActionPerformed
+        // TODO add your handling code here:
+        String dni = txtFiltrarDni.getText();
+        String nombre = txtFiltrarNombre.getText();
+        String apellidos = txtFiltrarApellidos.getText();
+        String sueldoStr = txtFiltrarSueldo.getText();
+        String diaStr = txtFiltrarDia.getText();
+        String mesStr = txtFiltrarMes.getText();
+        String anioStr = txtFiltrarAnio.getText();
+        String matricula = txtFiltrarMatricula.getText();
+        
+        try {
+            // comprobar sueldo
+            double sueldo = Double.parseDouble(sueldoStr);
+
+            // comprobar fecha
+            int dia = Integer.parseInt(diaStr);
+            int mes = Integer.parseInt(mesStr);
+            int anio = Integer.parseInt(anioStr);
+
+            // comprobar formato fecha
+            if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+                throw new NumberFormatException();
+            }
+
+            // concatena la fecha
+            LocalDate fecha = LocalDate.of(anio, mes, dia);
+
+            // objeto trabajador
+            Trabajador trabajador = new Trabajador(dni, nombre, apellidos, sueldo, fecha, matricula);
+
+            // insertar el trabajador
+            DAOTrabajador daoTrabajador = new DAOTrabajadoresImpl();
+            daoTrabajador.insert(trabajador);
+
+            // cerrar
+            this.dispose();
+        } catch (NumberFormatException e) {
+            // popup datos incorrectos
+            JOptionPane.showMessageDialog(this, "Datos incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnFiltrarAceptarActionPerformed
 
     /**
      * @param args the command line arguments

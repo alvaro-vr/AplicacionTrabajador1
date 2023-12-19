@@ -32,6 +32,8 @@ public class VistaInicial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         prepararTabla();
         rellenarTabla();
+        
+        new dialogFiltrarTrabajador(this, rootPaneCheckingEnabled).setVisible(rootPaneCheckingEnabled);
     }
     
     public void prepararTabla(){
@@ -58,6 +60,11 @@ public class VistaInicial extends javax.swing.JFrame {
         });
         
         tableTrabajadores.setModel(modelo);
+    }
+    
+    public void actualizarTabla(){
+        prepararTabla();
+        rellenarTabla();
     }
     
     /**
@@ -154,6 +161,10 @@ public class VistaInicial extends javax.swing.JFrame {
 
     private void btnAñadirTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirTrabajadorActionPerformed
         // TODO add your handling code here:
+        dialogGeneral = new dialogNuevoTrabajador(this, rootPaneCheckingEnabled);
+        dialogGeneral.setLocationRelativeTo(null);
+        dialogGeneral.setVisible(true);
+        actualizarTabla();
     }//GEN-LAST:event_btnAñadirTrabajadorActionPerformed
 
     private void btnModificarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTrabajadorActionPerformed

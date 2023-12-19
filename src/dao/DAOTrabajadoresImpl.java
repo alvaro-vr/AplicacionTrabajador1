@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +41,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
                         rs.getString("nombre"),
                         rs.getString("apellidos"),
                         rs.getDouble("sueldo"),
-                        rs.getDate("fecha"),
+                        rs.getDate("fecha").toLocalDate(),
                         rs.getString("matricula")
                 );
             }
@@ -68,7 +70,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
                         rs.getString("nombre"),
                         rs.getString("apellidos"),
                         rs.getDouble("sueldo"),
-                        rs.getDate("fecha"),
+                        rs.getDate("fecha").toLocalDate(),
                         rs.getString("matricula")
                 );
                 trabajadores.add(t);
@@ -90,12 +92,14 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
 
         PreparedStatement preparedStatement;
         try {
+            java.sql.Date fecha = Date.valueOf(trabajador.getFecha());
+            
             preparedStatement = conn.prepareStatement(consulta);
             preparedStatement.setString(1, trabajador.getDni());
             preparedStatement.setString(2, trabajador.getNombre());
             preparedStatement.setString(3, trabajador.getApellidos());
             preparedStatement.setDouble(4, trabajador.getSueldo());
-            preparedStatement.setDate(5, (Date) trabajador.getFecha());
+            preparedStatement.setDate(5, fecha);
             preparedStatement.setString(6, trabajador.getMatricula());
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
@@ -111,12 +115,14 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
         String consulta = "UPDATE trabajadores SET Nombre = ?, Apellidos = ?, Sueldo = ?, Fecha = ?, Matricula = ? WHERE DNI = ?";
 
         try {
+            java.sql.Date fecha = Date.valueOf(trabajador.getFecha());
+            
             PreparedStatement preparedStatement = conn.prepareStatement(consulta);
             preparedStatement.setString(6, trabajador.getDni());
             preparedStatement.setString(1, trabajador.getNombre());
             preparedStatement.setString(2, trabajador.getApellidos());
             preparedStatement.setDouble(3, trabajador.getSueldo());
-            preparedStatement.setDate(4, (Date) trabajador.getFecha());
+            preparedStatement.setDate(4, fecha);
             preparedStatement.setString(5, trabajador.getMatricula());
             preparedStatement.executeUpdate();
 
