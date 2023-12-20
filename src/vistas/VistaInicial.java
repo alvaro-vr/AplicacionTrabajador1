@@ -81,6 +81,7 @@ public class VistaInicial extends javax.swing.JFrame {
         btnEliminarTrabajador = new javax.swing.JButton();
         btnAñadirTrabajador = new javax.swing.JButton();
         btnModificarTrabajador = new javax.swing.JToggleButton();
+        btnFiltrarTrabajador = new javax.swing.JButton();
 
         javax.swing.GroupLayout dialogGeneralLayout = new javax.swing.GroupLayout(dialogGeneral.getContentPane());
         dialogGeneral.getContentPane().setLayout(dialogGeneralLayout);
@@ -132,6 +133,9 @@ public class VistaInicial extends javax.swing.JFrame {
         });
         panelContenedorBotones.add(btnModificarTrabajador);
 
+        btnFiltrarTrabajador.setText("Filtrar Trabajadores");
+        panelContenedorBotones.add(btnFiltrarTrabajador);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,6 +182,7 @@ public class VistaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAñadirTrabajador;
     private javax.swing.JButton btnEliminarTrabajador;
+    private javax.swing.JButton btnFiltrarTrabajador;
     private javax.swing.JToggleButton btnModificarTrabajador;
     private javax.swing.JDialog dialogGeneral;
     private javax.swing.JPanel panelContenedorBotones;

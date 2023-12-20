@@ -112,6 +112,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarTrabajadorActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btnFiltrarTrabajador">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Filtrar Trabajadores"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
