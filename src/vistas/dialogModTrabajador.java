@@ -4,6 +4,12 @@
  */
 package vistas;
 
+import dao.DAOTrabajador;
+import dao.DAOTrabajadoresImpl;
+import entidades.Trabajador;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alumno
@@ -48,6 +54,11 @@ public class dialogModTrabajador extends javax.swing.JDialog {
         setTitle("Modificar Trabajador");
 
         btnModCancelar.setText("Cancelar");
+        btnModCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModCancelarActionPerformed(evt);
+            }
+        });
 
         txtModAnio.setPreferredSize(new java.awt.Dimension(100, 26));
 
@@ -69,6 +80,11 @@ public class dialogModTrabajador extends javax.swing.JDialog {
         jLabel7.setText("Matricula:");
 
         btnModAceptar.setText("Aceptar");
+        btnModAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,6 +166,54 @@ public class dialogModTrabajador extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnModCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModCancelarActionPerformed
+        // TODO add your handling code here:
+       this.dispose();
+    }//GEN-LAST:event_btnModCancelarActionPerformed
+
+    private void btnModAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModAceptarActionPerformed
+        // TODO add your handling code here:
+        String dni = txtModDni.getText();
+        String nombre = txtModNombre.getText();
+        String apellidos = txtModApellidos.getText();
+        String sueldoStr = txtModSueldo.getText();
+        String diaStr = txtModDia.getText();
+        String mesStr = txtModMes.getText();
+        String anioStr = txtModAnio.getText();
+        String matricula = txtModMatricula.getText();
+        
+        try {
+            // comprobar sueldo
+            double sueldo = Double.parseDouble(sueldoStr);
+
+            // comprobar fecha
+            int dia = Integer.parseInt(diaStr);
+            int mes = Integer.parseInt(mesStr);
+            int anio = Integer.parseInt(anioStr);
+
+            // comprobar formato fecha
+            if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+                throw new NumberFormatException();
+            }
+
+            // concatena la fecha
+            LocalDate fecha = LocalDate.of(anio, mes, dia);
+
+            // objeto trabajador
+            Trabajador trabajador = new Trabajador(dni, nombre, apellidos, sueldo, fecha, matricula);
+
+            // insertar el trabajador
+            DAOTrabajador daoTrabajador = new DAOTrabajadoresImpl();
+            daoTrabajador.update(trabajador);
+
+            // cerrar
+            this.dispose();
+        } catch (NumberFormatException e) {
+            // popup datos incorrectos
+            JOptionPane.showMessageDialog(this, "Datos incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModAceptarActionPerformed
 
     /**
      * @param args the command line arguments

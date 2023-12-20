@@ -32,8 +32,6 @@ public class VistaInicial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         prepararTabla();
         rellenarTabla();
-        
-        new dialogFiltrarTrabajador(this, rootPaneCheckingEnabled).setVisible(rootPaneCheckingEnabled);
     }
     
     public void prepararTabla(){
@@ -170,6 +168,10 @@ public class VistaInicial extends javax.swing.JFrame {
 
     private void btnModificarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTrabajadorActionPerformed
         // TODO add your handling code here:
+        dialogGeneral = new dialogModTrabajador(this, rootPaneCheckingEnabled);
+        dialogGeneral.setLocationRelativeTo(null);
+        dialogGeneral.setVisible(true);
+        actualizarTabla();
     }//GEN-LAST:event_btnModificarTrabajadorActionPerformed
 
 
