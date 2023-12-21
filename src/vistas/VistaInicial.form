@@ -74,6 +74,9 @@
               <Table columnCount="0" rowCount="1"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -116,6 +119,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Filtrar Trabajadores"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarTrabajadorActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -25,7 +25,7 @@ public class VistaInicial extends javax.swing.JFrame {
     private final String[] cabeceraTabla = {
         "DNI", "Nombre", "Apedillos", "Sueldo", "Fecha", "Matricula"
     };
-    private DefaultTableModel modelo = new DefaultTableModel();
+    public DefaultTableModel modelo = new DefaultTableModel();
 
     public VistaInicial() {
         initComponents();
@@ -134,6 +134,11 @@ public class VistaInicial extends javax.swing.JFrame {
         panelContenedorBotones.add(btnModificarTrabajador);
 
         btnFiltrarTrabajador.setText("Filtrar Trabajadores");
+        btnFiltrarTrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarTrabajadorActionPerformed(evt);
+            }
+        });
         panelContenedorBotones.add(btnFiltrarTrabajador);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,6 +218,15 @@ public class VistaInicial extends javax.swing.JFrame {
         actualizarTabla();
     }//GEN-LAST:event_btnModificarTrabajadorActionPerformed
 
+    private void btnFiltrarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarTrabajadorActionPerformed
+        // TODO add your handling code here:
+        dialogFiltrarTrabajador filtrarTrabajador =  new dialogFiltrarTrabajador(this, rootPaneCheckingEnabled);
+        filtrarTrabajador.vistaInicial = this;
+        dialogGeneral = filtrarTrabajador;
+        dialogGeneral.setLocationRelativeTo(null);
+        dialogGeneral.setVisible(true);
+    }//GEN-LAST:event_btnFiltrarTrabajadorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAñadirTrabajador;
@@ -222,6 +236,6 @@ public class VistaInicial extends javax.swing.JFrame {
     private javax.swing.JDialog dialogGeneral;
     private javax.swing.JPanel panelContenedorBotones;
     private javax.swing.JScrollPane scrollPanelTabla;
-    private javax.swing.JTable tableTrabajadores;
+    public javax.swing.JTable tableTrabajadores;
     // End of variables declaration//GEN-END:variables
 }

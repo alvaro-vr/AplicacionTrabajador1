@@ -7,10 +7,11 @@ package vistas;
 import dao.DAOTrabajador;
 import dao.DAOTrabajadoresImpl;
 import entidades.Trabajador;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.Date;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +22,10 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
     /**
      * Creates new form dialogModTrabajador
      */
+    
+    public VistaInicial vistaInicial = null;
+    public DAOTrabajador dao = new DAOTrabajadoresImpl();
+
     public dialogFiltrarTrabajador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -235,45 +240,33 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
 
     private void btnFiltrarAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarAceptarActionPerformed
         // TODO add your handling code here:
-        String dni = txtFiltrarDni.getText();
-        String nombre = txtFiltrarNombre.getText();
-        String apellidos = txtFiltrarApellidos.getText();
-        String sueldoStr = txtFiltrarSueldo.getText();
-        String diaStr = txtFiltrarDia.getText();
-        String mesStr = txtFiltrarMes.getText();
-        String anioStr = txtFiltrarAnio.getText();
-        String matricula = txtFiltrarMatricula.getText();
         
-        try {
-            // comprobar sueldo
-            double sueldo = Double.parseDouble(sueldoStr);
-
-            // comprobar fecha
-            int dia = Integer.parseInt(diaStr);
-            int mes = Integer.parseInt(mesStr);
-            int anio = Integer.parseInt(anioStr);
-
-            // comprobar formato fecha
-            if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
-                throw new NumberFormatException();
-            }
-
-            // concatena la fecha
-            LocalDate fecha = LocalDate.of(anio, mes, dia);
-
-            // objeto trabajador
-            Trabajador trabajador = new Trabajador(dni, nombre, apellidos, sueldo, fecha, matricula);
-
-            // insertar el trabajador
-            DAOTrabajador daoTrabajador = new DAOTrabajadoresImpl();
-            daoTrabajador.insert(trabajador);
-
-            // cerrar
-            this.dispose();
-        } catch (NumberFormatException e) {
-            // popup datos incorrectos
-            JOptionPane.showMessageDialog(this, "Datos incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        ArrayList<Trabajador> lista = dao.getAll();
+        
+        lista = ordenarTrabajadores(lista);
+        
+        DefaultTableModel modeloFiltrado = new DefaultTableModel();
+        modeloFiltrado.addColumn("DNI");
+        modeloFiltrado.addColumn("NOMBRE");
+        modeloFiltrado.addColumn("APELLIDOS");
+        modeloFiltrado.addColumn("SUELDO");
+        modeloFiltrado.addColumn("FECHA");
+        modeloFiltrado.addColumn("MATRICULA");
+        
+        lista.stream().forEach(trabajador -> {
+            ArrayList fila = new ArrayList();
+            fila.add(trabajador.getDni());
+            fila.add(trabajador.getNombre());
+            fila.add(trabajador.getApellidos());
+            fila.add(trabajador.getSueldo());
+            fila.add(trabajador.getFecha());
+            fila.add(trabajador.getMatricula());
+            modeloFiltrado.addRow(fila.toArray());
+        });
+        
+        vistaInicial.tableTrabajadores.setModel(modeloFiltrado);
+        
+        this.dispose();
     }//GEN-LAST:event_btnFiltrarAceptarActionPerformed
 
     private void btnFiltrarCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarCancelarActionPerformed
@@ -307,4 +300,22 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
     private javax.swing.JTextField txtFiltrarNombre;
     private javax.swing.JTextField txtFiltrarSueldo;
     // End of variables declaration//GEN-END:variables
+
+    public ArrayList<Trabajador> ordenarTrabajadores(ArrayList<Trabajador> lista) {
+
+        switch (cboCamposOrdenacion.getSelectedIndex()) {
+            case 0:
+                break;
+            case 1:
+                Collections.sort(lista, new Comparator<Trabajador>() {
+                    @Override
+                    public int compare(Trabajador o1, Trabajador o2) {
+                        return o1.getDni().compareTo(o2.getDni());
+                    }
+                });
+        }
+        
+        return lista;
+    }
+
 }
