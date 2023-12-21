@@ -7,6 +7,7 @@ package vistas;
 import dao.DAOTrabajador;
 import dao.*;
 import entidades.Trabajador;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,21 +21,20 @@ public class VistaInicial extends javax.swing.JFrame {
     /**
      * Creates new form VistaInicial
      */
-    
     private final DAOTrabajador dao = new DAOTrabajadoresImpl();
     private final String[] cabeceraTabla = {
         "DNI", "Nombre", "Apedillos", "Sueldo", "Fecha", "Matricula"
     };
     private DefaultTableModel modelo = new DefaultTableModel();
-    
+
     public VistaInicial() {
         initComponents();
         setLocationRelativeTo(null);
         prepararTabla();
         rellenarTabla();
     }
-    
-    public void prepararTabla(){
+
+    public void prepararTabla() {
         modelo = new DefaultTableModel();
         modelo.addColumn("DNI");
         modelo.addColumn("NOMBRE");
@@ -43,8 +43,8 @@ public class VistaInicial extends javax.swing.JFrame {
         modelo.addColumn("FECHA");
         modelo.addColumn("MATRICULA");
     }
-    
-    public void rellenarTabla(){
+
+    public void rellenarTabla() {
         ArrayList<Trabajador> trabajadores = dao.getAll();
         trabajadores.stream().forEach(trabajador -> {
             ArrayList fila = new ArrayList();
@@ -56,15 +56,15 @@ public class VistaInicial extends javax.swing.JFrame {
             fila.add(trabajador.getMatricula());
             modelo.addRow(fila.toArray());
         });
-        
+
         tableTrabajadores.setModel(modelo);
     }
-    
-    public void actualizarTabla(){
+
+    public void actualizarTabla() {
         prepararTabla();
         rellenarTabla();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,21 +168,10 @@ public class VistaInicial extends javax.swing.JFrame {
 
             if (respuesta == JOptionPane.YES_OPTION) {
 
-                dao.delete( tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 0).toString());
-                
-                /*
-                String sentencia = "DELETE FROM Trabajadores WHERE DNI = ?";
-                try {
-                    java.sql.PreparedStatement preparedStatement = con.prepareStatement(sentencia);
-                    preparedStatement.setInt(1, (int) modelo.getValueAt(tableTrabajadores.getSelectedRow(), 0));
-                    preparedStatement.executeUpdate();
-                    ActualizarTabla();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
+                dao.delete(tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 0).toString());
             }
         }
-        
+
         actualizarTabla();
     }//GEN-LAST:event_btnEliminarTrabajadorActionPerformed
 
@@ -196,9 +185,31 @@ public class VistaInicial extends javax.swing.JFrame {
 
     private void btnModificarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTrabajadorActionPerformed
         // TODO add your handling code here:
-        dialogGeneral = new dialogModTrabajador(this, rootPaneCheckingEnabled);
-        dialogGeneral.setLocationRelativeTo(null);
-        dialogGeneral.setVisible(true);
+
+        if (tableTrabajadores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una fila en la tabla para modificar!");
+        } else {
+
+            dialogModTrabajador modTrabajador = new dialogModTrabajador(this, rootPaneCheckingEnabled);
+            modTrabajador.txtModDni.setText(tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 0).toString());
+            modTrabajador.txtModNombre.setText(tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 1).toString());
+            modTrabajador.txtModApellidos.setText(tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 2).toString());
+            modTrabajador.txtModSueldo.setText(tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 3).toString());
+
+            LocalDate fecha = LocalDate.parse(tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 4).toString());
+
+            modTrabajador.txtModDia.setText(String.valueOf(fecha.getDayOfMonth()));
+            modTrabajador.txtModMes.setText(String.valueOf(fecha.getMonthValue()));
+            modTrabajador.txtModAnio.setText(String.valueOf(fecha.getYear()));
+
+            modTrabajador.txtModMatricula.setText(tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 5).toString());
+
+            dialogGeneral = modTrabajador;
+            dialogGeneral.setLocationRelativeTo(null);
+
+            dialogGeneral.setVisible(true);
+        }
+
         actualizarTabla();
     }//GEN-LAST:event_btnModificarTrabajadorActionPerformed
 

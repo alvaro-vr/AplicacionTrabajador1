@@ -266,13 +266,13 @@ public class dialogModTrabajador extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtModAnio;
-    private javax.swing.JTextField txtModApellidos;
-    private javax.swing.JTextField txtModDia;
-    private javax.swing.JTextField txtModDni;
-    private javax.swing.JTextField txtModMatricula;
-    private javax.swing.JTextField txtModMes;
-    private javax.swing.JTextField txtModNombre;
-    private javax.swing.JTextField txtModSueldo;
+    public javax.swing.JTextField txtModAnio;
+    public javax.swing.JTextField txtModApellidos;
+    public javax.swing.JTextField txtModDia;
+    public javax.swing.JTextField txtModDni;
+    public javax.swing.JTextField txtModMatricula;
+    public javax.swing.JTextField txtModMes;
+    public javax.swing.JTextField txtModNombre;
+    public javax.swing.JTextField txtModSueldo;
     // End of variables declaration//GEN-END:variables
 }
