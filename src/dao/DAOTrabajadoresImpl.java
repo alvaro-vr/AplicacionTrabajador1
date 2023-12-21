@@ -133,7 +133,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
     }
 
     @Override
-    public void delete(Trabajador trabajador) {
+    public void delete(String dni) {
         //pedir la conexión
         Connection conexion = new DBConnection().getConexion();
 
@@ -142,7 +142,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
             //Uso una plataforma "Preparada"
             PreparedStatement plataforma = conexion.prepareStatement(sql);
             //rellenar las interrogaciones
-            plataforma.setString(1, trabajador.getDni());
+            plataforma.setString(1, dni);
             plataforma.executeUpdate();
 
             //cerrar la conexión

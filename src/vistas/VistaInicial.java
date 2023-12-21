@@ -7,8 +7,8 @@ package vistas;
 import dao.DAOTrabajador;
 import dao.*;
 import entidades.Trabajador;
-import java.awt.List;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -160,6 +160,30 @@ public class VistaInicial extends javax.swing.JFrame {
 
     private void btnEliminarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTrabajadorActionPerformed
         // TODO add your handling code here:
+        if (tableTrabajadores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una fila en la tabla para borrar!");
+        } else {
+
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el trabajador?", "Eliminar", JOptionPane.YES_NO_OPTION);
+
+            if (respuesta == JOptionPane.YES_OPTION) {
+
+                dao.delete( tableTrabajadores.getValueAt(tableTrabajadores.getSelectedRow(), 0).toString());
+                
+                /*
+                String sentencia = "DELETE FROM Trabajadores WHERE DNI = ?";
+                try {
+                    java.sql.PreparedStatement preparedStatement = con.prepareStatement(sentencia);
+                    preparedStatement.setInt(1, (int) modelo.getValueAt(tableTrabajadores.getSelectedRow(), 0));
+                    preparedStatement.executeUpdate();
+                    ActualizarTabla();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+            }
+        }
+        
+        actualizarTabla();
     }//GEN-LAST:event_btnEliminarTrabajadorActionPerformed
 
     private void btnAñadirTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirTrabajadorActionPerformed

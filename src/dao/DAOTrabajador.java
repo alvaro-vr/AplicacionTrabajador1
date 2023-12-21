@@ -16,5 +16,5 @@ public interface DAOTrabajador {
     public ArrayList<Trabajador> getAll();
     public void insert(Trabajador trabajador);
     public void update(Trabajador trabajador);
-    public void delete(Trabajador trabajador);
+    public void delete(String dni);
 }
