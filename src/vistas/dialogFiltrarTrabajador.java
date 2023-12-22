@@ -312,7 +312,22 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
                     public int compare(Trabajador o1, Trabajador o2) {
                         return o1.getDni().compareTo(o2.getDni());
                     }
-                });
+                });break;
+            case 2:
+                Collections.sort(lista, new Comparator<Trabajador>() {
+                    @Override
+                    public int compare(Trabajador o1, Trabajador o2) {
+                        return o1.getNombre().compareTo(o2.getNombre());
+                    }
+                });break;
+            case 3:
+                Collections.sort(lista, new Comparator<Trabajador>() {
+                    @Override
+                    public int compare(Trabajador o1, Trabajador o2) {
+                        return o1.getApellidos().compareTo(o2.getApellidos());
+                    }
+                });break;
+            
         }
         
         return lista;
