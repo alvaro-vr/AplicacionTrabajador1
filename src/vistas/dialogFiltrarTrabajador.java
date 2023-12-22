@@ -113,6 +113,7 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
         cboCamposOrdenacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Sin ordenación)", "DNI", "Nombre", "Apellidos", "Sueldo", "Fecha", "Matricula" }));
 
         buttonGroup1.add(radioASC);
+        radioASC.setSelected(true);
         radioASC.setText("ASC");
 
         buttonGroup1.add(radioDESC);
@@ -243,15 +244,9 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
         
         ArrayList<Trabajador> lista = dao.getAll();
         
-        lista = ordenarTrabajadores(lista);
+        lista = ordenarTrabajadores(lista, getSeleccion());
         
-        DefaultTableModel modeloFiltrado = new DefaultTableModel();
-        modeloFiltrado.addColumn("DNI");
-        modeloFiltrado.addColumn("NOMBRE");
-        modeloFiltrado.addColumn("APELLIDOS");
-        modeloFiltrado.addColumn("SUELDO");
-        modeloFiltrado.addColumn("FECHA");
-        modeloFiltrado.addColumn("MATRICULA");
+        vistaInicial.prepararTabla();
         
         lista.stream().forEach(trabajador -> {
             ArrayList fila = new ArrayList();
@@ -261,10 +256,10 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
             fila.add(trabajador.getSueldo());
             fila.add(trabajador.getFecha());
             fila.add(trabajador.getMatricula());
-            modeloFiltrado.addRow(fila.toArray());
+            vistaInicial.modelo.addRow(fila.toArray());
         });
         
-        vistaInicial.tableTrabajadores.setModel(modeloFiltrado);
+        vistaInicial.tableTrabajadores.setModel(vistaInicial.modelo);
         
         this.dispose();
     }//GEN-LAST:event_btnFiltrarAceptarActionPerformed
@@ -301,7 +296,15 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
     private javax.swing.JTextField txtFiltrarSueldo;
     // End of variables declaration//GEN-END:variables
 
-    public ArrayList<Trabajador> ordenarTrabajadores(ArrayList<Trabajador> lista) {
+    private boolean getSeleccion(){
+        if(radioASC.isSelected()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    private ArrayList<Trabajador> ordenarTrabajadores(ArrayList<Trabajador> lista, boolean ascendente) {
 
         switch (cboCamposOrdenacion.getSelectedIndex()) {
             case 0:
@@ -310,21 +313,42 @@ public class dialogFiltrarTrabajador extends javax.swing.JDialog {
                 Collections.sort(lista, new Comparator<Trabajador>() {
                     @Override
                     public int compare(Trabajador o1, Trabajador o2) {
-                        return o1.getDni().compareTo(o2.getDni());
+                        return ascendente ? o1.getDni().compareTo(o2.getDni()) : o2.getDni().compareTo(o1.getDni());
                     }
                 });break;
             case 2:
                 Collections.sort(lista, new Comparator<Trabajador>() {
                     @Override
                     public int compare(Trabajador o1, Trabajador o2) {
-                        return o1.getNombre().compareTo(o2.getNombre());
+                        return ascendente ? o1.getNombre().compareTo(o2.getNombre()) : o2.getNombre().compareTo(o1.getNombre());
                     }
                 });break;
             case 3:
                 Collections.sort(lista, new Comparator<Trabajador>() {
                     @Override
                     public int compare(Trabajador o1, Trabajador o2) {
-                        return o1.getApellidos().compareTo(o2.getApellidos());
+                        return ascendente ? o1.getApellidos().compareTo(o2.getApellidos()) : o2.getApellidos().compareTo(o1.getApellidos());
+                    }
+                });break;
+            case 4:
+                Collections.sort(lista, new Comparator<Trabajador>() {
+                    @Override
+                    public int compare(Trabajador o1, Trabajador o2) {
+                        return ascendente ? Double.valueOf(o1.getSueldo()-o2.getSueldo()).intValue() : Double.valueOf(o2.getSueldo()-o1.getSueldo()).intValue();
+                    }
+                });break;
+            case 5:
+                Collections.sort(lista, new Comparator<Trabajador>() {
+                    @Override
+                    public int compare(Trabajador o1, Trabajador o2) {
+                        return ascendente ? o1.getFecha().compareTo(o2.getFecha()) : o2.getFecha().compareTo(o1.getFecha());
+                    }
+                });break;
+            case 6:
+                Collections.sort(lista, new Comparator<Trabajador>() {
+                    @Override
+                    public int compare(Trabajador o1, Trabajador o2) {
+                        return ascendente ? o1.getMatricula().compareTo(o2.getMatricula()) : o2.getMatricula().compareTo(o1.getMatricula());
                     }
                 });break;
             
