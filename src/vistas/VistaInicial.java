@@ -13,6 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Clase que representa la vista inicial de la aplicación. Esta clase se encarga
+ * de gestionar la interfaz gráfica principal, incluyendo la tabla de
+ * trabajadores y los botones para interactuar con ellos. También se encarga de
+ * la interacción con la capa de datos a través del DAO.
  *
  * @author Administrador
  */
@@ -27,6 +31,10 @@ public class VistaInicial extends javax.swing.JFrame {
     };
     public DefaultTableModel modelo = new DefaultTableModel();
 
+    /**
+     * Constructor de la clase. Inicializa los componentes de la interfaz
+     * gráfica y establece la ubicación de la ventana.
+     */
     public VistaInicial() {
         initComponents();
         setLocationRelativeTo(null);
@@ -34,6 +42,9 @@ public class VistaInicial extends javax.swing.JFrame {
         rellenarTabla();
     }
 
+    /**
+     * Método que prepara el modelo de la tabla.
+     */
     public void prepararTabla() {
         modelo = new DefaultTableModel();
         modelo.addColumn("DNI");
@@ -44,6 +55,9 @@ public class VistaInicial extends javax.swing.JFrame {
         modelo.addColumn("MATRICULA");
     }
 
+    /**
+     * Método que rellena la tabla con los datos de los trabajadores.
+     */
     public void rellenarTabla() {
         ArrayList<Trabajador> trabajadores = dao.getAll();
         trabajadores.stream().forEach(trabajador -> {
@@ -60,6 +74,9 @@ public class VistaInicial extends javax.swing.JFrame {
         tableTrabajadores.setModel(modelo);
     }
 
+    /**
+     * Método que actualiza la tabla de trabajadores.
+     */
     public void actualizarTabla() {
         prepararTabla();
         rellenarTabla();
@@ -163,6 +180,15 @@ public class VistaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método encargado de manejar el evento de eliminación de un trabajador.
+     * Verifica si se ha seleccionado una fila en la tabla de trabajadores y, en
+     * caso afirmativo, muestra un mensaje de confirmación para eliminar al
+     * trabajador. Si el usuario confirma, invoca al método DAO correspondiente
+     * para eliminar el trabajador seleccionado y actualiza la tabla.
+     *
+     * @param evt Evento de acción que desencadena este método.
+     */
     private void btnEliminarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTrabajadorActionPerformed
         // TODO add your handling code here:
         if (tableTrabajadores.getSelectedRow() == -1) {
@@ -180,6 +206,14 @@ public class VistaInicial extends javax.swing.JFrame {
         actualizarTabla();
     }//GEN-LAST:event_btnEliminarTrabajadorActionPerformed
 
+    /**
+     * Método encargado de manejar el evento de añadir un nuevo trabajador.
+     * Muestra un diálogo para ingresar los datos del nuevo trabajador y, una
+     * vez añadido, actualiza la tabla de trabajadores para reflejar los
+     * cambios.
+     *
+     * @param evt Evento de acción que desencadena este método.
+     */
     private void btnAñadirTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirTrabajadorActionPerformed
         // TODO add your handling code here:
         dialogGeneral = new dialogNuevoTrabajador(this, rootPaneCheckingEnabled);
@@ -188,6 +222,15 @@ public class VistaInicial extends javax.swing.JFrame {
         actualizarTabla();
     }//GEN-LAST:event_btnAñadirTrabajadorActionPerformed
 
+    /**
+     * Método encargado de manejar el evento de modificar un trabajador
+     * existente. Verifica si se ha seleccionado una fila en la tabla de
+     * trabajadores y, en caso afirmativo, muestra un diálogo para modificar los
+     * datos del trabajador seleccionado. Una vez realizada la modificación,
+     * actualiza la tabla para reflejar los cambios.
+     *
+     * @param evt Evento de acción que desencadena este método.
+     */
     private void btnModificarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTrabajadorActionPerformed
         // TODO add your handling code here:
 
@@ -218,9 +261,16 @@ public class VistaInicial extends javax.swing.JFrame {
         actualizarTabla();
     }//GEN-LAST:event_btnModificarTrabajadorActionPerformed
 
+    /**
+     * Método encargado de manejar el evento de filtrado de trabajadores. Al ser
+     * invocado, muestra un diálogo especializado para filtrar y visualizar
+     * trabajadores según diferentes criterios seleccionados por el usuario.
+     *
+     * @param evt Evento de acción que desencadena este método.
+     */
     private void btnFiltrarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarTrabajadorActionPerformed
         // TODO add your handling code here:
-        dialogFiltrarTrabajador filtrarTrabajador =  new dialogFiltrarTrabajador(this, rootPaneCheckingEnabled);
+        dialogFiltrarTrabajador filtrarTrabajador = new dialogFiltrarTrabajador(this, rootPaneCheckingEnabled);
         filtrarTrabajador.vistaInicial = this;
         dialogGeneral = filtrarTrabajador;
         dialogGeneral.setLocationRelativeTo(null);

@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS bdTrabajadores;
+CREATE DATABASE IF NOT EXISTS bdTrabajadores1;
 
-USE bdTrabajadores;
+USE bdTrabajadores1;
 
 CREATE TABLE `trabajadores` (
   `dni` varchar(10) NOT NULL,

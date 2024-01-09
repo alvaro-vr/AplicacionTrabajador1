@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package vistas;
 
 import dao.DAOTrabajador;
@@ -11,13 +7,14 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Alumno
+ * Clase encargada de modificar los datos del trabajador
+ * 
+ * @author Administrador
  */
 public class dialogModTrabajador extends javax.swing.JDialog {
 
     /**
-     * Creates new form dialogModTrabajador
+     * Crea un nuevo JDialog de la clase
      */
     public dialogModTrabajador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -167,11 +164,21 @@ public class dialogModTrabajador extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *  Método que cancela la modiifcación del trabajador
+     *
+     * @param evt Evento producido por el boton cancelar
+     */
     private void btnModCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModCancelarActionPerformed
         // TODO add your handling code here:
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnModCancelarActionPerformed
 
+    /**
+     * Método que modifica el trabajador y se apolla en el paquete dao para su implementación
+     * 
+     * @param evt Evento producido por el boton aceptar
+     */
     private void btnModAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModAceptarActionPerformed
         // TODO add your handling code here:
         String dni = txtModDni.getText();
@@ -182,7 +189,7 @@ public class dialogModTrabajador extends javax.swing.JDialog {
         String mesStr = txtModMes.getText();
         String anioStr = txtModAnio.getText();
         String matricula = txtModMatricula.getText();
-        
+
         try {
             // comprobar sueldo
             double sueldo = Double.parseDouble(sueldoStr);
@@ -214,48 +221,6 @@ public class dialogModTrabajador extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Datos incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnModAceptarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(dialogModTrabajador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                dialogModTrabajador dialog = new dialogModTrabajador(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModAceptar;

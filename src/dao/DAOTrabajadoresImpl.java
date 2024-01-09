@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import connection.DBConnection;
@@ -14,13 +10,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Implementación concreta de la interfaz DAOTrabajador que gestiona las operaciones CRUD para la entidad Trabajador.
+ * Esta clase proporciona la implementación específica de cada método definido en la interfaz DAOTrabajador.
+ * 
+ * Utiliza la conexión a la base de datos proporcionada por la clase DBConnection para realizar las operaciones de acceso a datos.
+ * 
  * @author Administrador
+ * @see DAOTrabajador
  */
 public class DAOTrabajadoresImpl implements DAOTrabajador {
 
@@ -57,7 +57,7 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
     @Override
     public ArrayList<Trabajador> getAll() {
         ArrayList<Trabajador> trabajadores = new ArrayList<Trabajador>();
-        Connection conn = new DBConnection().getConexion();;
+        Connection conn = new DBConnection().getConexion();
 
         String consulta = "SELECT * FROM trabajadores ";
         try {
@@ -134,24 +134,18 @@ public class DAOTrabajadoresImpl implements DAOTrabajador {
 
     @Override
     public void delete(String dni) {
-        //pedir la conexión
         Connection conexion = new DBConnection().getConexion();
 
         try {
             String sql = "DELETE FROM trabajadores WHERE dni = ?";
-            //Uso una plataforma "Preparada"
             PreparedStatement plataforma = conexion.prepareStatement(sql);
-            //rellenar las interrogaciones
             plataforma.setString(1, dni);
             plataforma.executeUpdate();
-
-            //cerrar la conexión
             conexion.close();
 
         } catch (SQLException e) {
             System.out.println("Error borrando trabajador");
             e.printStackTrace();
         }
-
     }
 }
